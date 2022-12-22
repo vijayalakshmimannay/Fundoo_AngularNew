@@ -16,6 +16,18 @@ when("/Dashboard",{
     templateUrl:"DashBoard/Dashboard.html",
     controller:"dashboardCtrl"
 }).
+when("/Trash",{
+    templateUrl:"Trash/Trash.html",
+    controller:"dashboardCtrl"
+}).
+when("/Archive",{
+    templateUrl:"Archive/Archive.html",
+    controller:"dashboardCtrl"
+}).
+when("/Notes",{
+    templateUrl:"DashBoard/Dashboard.html",
+    controller:"dashboardCtrl"
+}).
 otherwise({
 redirectTo:"/Login"
 });

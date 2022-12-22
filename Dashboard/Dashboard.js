@@ -12,7 +12,9 @@ app.component('noteList',{
     $scope.getAllTheNotes=function(){
         $http.get("https://localhost:44327/api/Notes/GetNotes",headersConfig)
     .then((response1)=>{console.log(response1.data);
-    $scope.AllNotesArray = response1.data;
+   $scope.getNotes = response1.data.data;
+    //$scope.AllNotesArray = response1.data;
+    //console.log(AllNotesArray);
     },(error)=>{ console.log(error)
     })
 
@@ -54,4 +56,50 @@ app.component('noteList',{
           console.log(error)
       })
   };
+
+  //For Archive
+$scope.ToArchive=function(noteID){
+    var datanote={
+        noteID: noteID
+      }
+      $scope.noteID=noteID;
+      console.log( $scope.noteID);
+    $http.put(`https://localhost:44327/api/Notes/Archive?NoteID=${noteID}`,null,headersConfig)
+    .then(function(response){
+        console.log(response);
+       window.location.reload();  
+    },function(error){
+        console.log(error)
+    })
+  };
+      
+//   $scope.openModal = function(noteID,title,note,color,image,isArchive,isPin,isTrash){
+//     user={
+//       noteID:noteID,
+//         title:title,
+//         note:note,
+//         color:color,
+//         image:image,
+//         isArchive:isArchive,
+//         isPin:isPin,
+//         isTrash:isTrash,
+//     }
+//     $scope.modalInstance = $uibModal.open({
+//     ariaLabelledBy: 'modal-title',
+//     ariaDescribedBy: 'modal-body',
+//     templateUrl: 'window.html',
+//     controller :'ModelHandlerController',
+//     controllerAs: '$ctrl',
+//     size: 'sm',
+//     resolve: {
+//     user:function(){
+//       return user;
+//     }
+//     }
+//     });
+   
+//     }
+
+    
 })
+

@@ -1,31 +1,15 @@
-<!-- <body ng-app="postserviceapp" ng-controller="postServiceCtrl">
-  
-    <button ng-click="visible=!visible;">Click me to open the menu!</button>
-    <div ng-class="{'is-visible':visible}" class="menu">
-      <ul>
-        <li <a href="#">Home</a></li>
-        <li>Notes</li>
-        <li>Reminders</li>
-        <li>Labels</li>
-        <li>Archive</li>
-        <li>Trash</li>
-      </ul>
-    </div>
-      </body> -->
-<!-- 
-      <!DOCTYPE html>
-      <html lang="en" ng-app="FundooApp">
-      <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Document</title> -->
-<!-- <link rel="stylesheet" href="/Dashboard/Dashboard.css"> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
-<!-- <script src="Dashboard.js"></script> -->
-<!-- </head>
-      <body> -->
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="FundooApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="/Dashboard/Dashboard.css"> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+  <!-- <script src="Dashboard.js"></script> -->
+</head>
 
 <body>
   <div class='main' ng-controller="dashboardCtrl as notes">
@@ -83,7 +67,7 @@
 
 
   </div>
-  <div class='TakeNoteAndNote3' ng-controller="dashboardCtrl as notes">
+  <div ng-controller="dashboardCtrl as notes">
     <div class="TakeNotePopUp">
       <div class="note part-takeNoteOne" ng-show="showButtons.includes(0)" ng-click="toggle1()">
         <input class='TakeANote' type="text" placeholder="Take a note..." size="50"></input>
@@ -134,36 +118,23 @@
       </div>
     </div>
   </div>
-
-  <div class="NotesList1" ng-init="getAllTheNotes()">
-    <note-list></note-list>
-    <div class="part-takeNotetwo BookClass1" ng-repeat="item in getNotes">
-      <div class="note takeNotUp1">
+  <div class='BookClass' id="TrashNotes" ng-controller="dashboardCtrl" ng-init="getAllTheNotes()">
+    <div class="part-takeNotetwo2" ng-repeat="item in getNotes" ng-if="item.archive==true">
+      <div class="note takeNotUp">
         <h5>{{item.title}}</h5>
-        <img src='/src/assets/push_pin.svg' width='20' />
+        <img src='../src/assets/push_pin.svg' width='20' ng-click="ToPin(item.isPin)" />
       </div>
-      <div class="NotesField1">
-        {{item.description}}
+      <div class="NotesField">
+        {{item.note}}
       </div>
-      <div class="lastDiv1">
-        <div class="allIcons1">
-          <img src='/src/assets/add_alert (1).svg' width='14' height='20' />
-          <img src='/src/assets/person_add_alt_1_black_24dp.svg' width='18' height='18' />
-          <img src='/src/assets/palette_black_24dp.svg' width='20' />
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image"
-            viewBox="0 0 16 16">
-            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-            <path
-              d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
-          </svg>
-          <img src='/src/assets/archive.svg' width='20' ng-click="ToArchive(item.archive)"/>
-          <img src='/src/assets/delete.svg' width='20' ng-click="ToTrash(item.trash)"/>
+      <div class="lastDiv">
+        <div class="allIcons">
+          <img src='../src/assets/archive.svg' width='25' ng-click="ToArchive(item.archive)" />
+          <img src='../src/assets/delete.svg' width='20' height='20' ng-click="ToTrash(item.trash)" />
         </div>
       </div>
     </div>
-
   </div>
 </body>
-
 
 </html>
