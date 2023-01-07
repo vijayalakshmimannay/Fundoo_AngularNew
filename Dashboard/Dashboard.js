@@ -2,6 +2,15 @@
 app.component('noteList',{
     templateUrl:"/Notes/addNotes.html",
 }).controller("dashboardCtrl",function($scope,$http,$window){
+    var note = this;
+    var noteToTrash = 0;
+    $scope.titleName = ["Notes"]
+    note.toggle = false;
+    $scope.colorArray = ["LightSalmon","Pink","PapayaWhip","Khaki","Lavender","Thistle","GreenYellow","Aquamarine","BlanchedAlmond","Gainsboro","AliceBlue"]
+    $scope.showButtons = [0];
+    $scope.toggle1 = function () {
+        $scope.showButtons = [1];
+    };
     var token=$window.localStorage.getItem("token");
     let headersConfig = {
         headers:{
@@ -72,6 +81,26 @@ $scope.ToArchive=function(noteID){
         console.log(error)
     })
   };
+
+  $scope.colorPop = [0]
+  $scope.colorPopup = function () {
+      if ($scope.colorPop.includes(0)) {
+          $scope.colorPop = [1];
+      }
+      else {
+          $scope.colorPop = [0]
+      }
+  };
+
+  $scope.changeColor = function (noteID, color){
+      $http.put(`https://localhost:44327/api/Notes/Colour?notesId=${noteID}&colour=${color}`, null, headersConfig)
+          .then(function (response) {
+              console.log(response)
+          }, function (error) {
+              console.log(error)
+          })
+          window.location.reload()
+  }
       
 //   $scope.openModal = function(noteID,title,note,color,image,isArchive,isPin,isTrash){
 //     user={

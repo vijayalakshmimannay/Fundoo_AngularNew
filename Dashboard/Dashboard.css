@@ -333,8 +333,8 @@ border:none;
 .allIcons{
   display:flex;
   flex-direction: row;
-  width:15rem;
-  justify-content: space-between;
+  width:20rem;
+  /* justify-content: space-between; */
 }
 
 .lastDiv{
@@ -375,4 +375,44 @@ margin-left:10rem;
 .TakeNoteAndNote3{
 display:flex;
 flex-direction: column;
+}
+.BookClass1{
+  min-width: 15rem;
+}
+.notetnh:hover .colorPopper {
+  visibility: visible;
+}
+
+.colorPopper:hover {
+  visibility: visible;
+}
+
+.paintPallet {
+  position: relative;
+}
+
+.colorPopper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30vw;
+  border: 1px solid rgb(221, 219, 219);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  /* visibility: hidden; */
+  position: absolute;
+}
+
+.colorCode {
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  margin: 5px;
+}
+.colorPopper:hover {
+  visibility: visible;
+}
+.allIcons2 {
+  display: flex;
+  gap:1rem;
 }
