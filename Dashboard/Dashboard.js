@@ -11,13 +11,26 @@ app.component('noteList',{
     $scope.toggle1 = function () {
         $scope.showButtons = [1];
     };
+    $scope.labelView = [0];
     var token=$window.localStorage.getItem("token");
     let headersConfig = {
         headers:{
             Authorization:"Bearer "+localStorage.getItem("token")
         } 
     }
-
+    $scope.pop = [0];
+    $scope.popper = function (noteID) {
+        console.log($scope.pop);
+      noteToTrash = noteID
+      if ($scope.pop.includes(0)) {
+        $scope.pop = [1];
+        console.log($scope.pop);
+      }
+      else {
+        $scope.pop = [0];
+      }
+      
+    };
     $scope.getAllTheNotes=function(){
         $http.get("https://localhost:44327/api/Notes/GetNotes",headersConfig)
     .then((response1)=>{console.log(response1.data);
@@ -25,6 +38,16 @@ app.component('noteList',{
     //$scope.AllNotesArray = response1.data;
     //console.log(AllNotesArray);
     },(error)=>{ console.log(error)
+    })
+    
+    $http.get("https://localhost:44327/api/Label/GetLabelbyUserId", headersConfig)
+    .then( function(response){
+        console.log("All The labels.")
+        console.log(response.data.data);
+        $scope.getAllLabels = response.data.data;
+        console.log($scope.getAllLabels);
+    }, function(error){
+        console.log(error)
     })
 
     }
@@ -129,6 +152,35 @@ $scope.ToArchive=function(noteID){
    
 //     }
 
-    
+
+$scope.refreshWindow = function (){
+    window.location.reload();
+}
+$scope.addLabel = function (noteID) {
+    $scope.labelNote = noteID
+    if ($scope.labelView.includes(0)) {
+        $scope.labelView = [1];
+    }
+    else {
+        $scope.labelView = [0]
+    }
+}
+$scope.setLabel = function (name){
+    $http.post(`https://localhost:44327/api/Label/Create?Name=${name}&noteID=${$scope.labelNote}`, null, headersConfig)
+    .then(function (response)
+    {
+      console.log(response.data)
+        if (response.data)
+        {
+          console.log("label res"+response.data);
+          $scope.labelView = [0];
+          $scope.pop = [0];
+         /*  $scope.refreshWindow(); */
+        }
+
+    }, function (error){
+        console.log(error)
+    })
+}
 })
 

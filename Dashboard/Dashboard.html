@@ -49,25 +49,28 @@
       </div>
     </div>
 
-    <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav" ng-controller="dashboardCtrl as note" ng-init="getAllTheNotes()">
       <div class="navOne">
         <a href="#!Notes" class="sidenavdiv" id="Notes">
           <img src='/src/assets/notes.svg' width='15' />
+          <p class="navTwo">Notes</p>
         </a>
-        <a href="#" class="sidenavdiv" id="Remainder">
-          <img src='/src/assets/notifications.svg' width='15' />
-        </a>
-        <a href="#" class="sidenavdiv" id="Label">
+        <a class="sidenavdiv" ng-repeat="label in getAllLabels">
           <img src='/src/assets/label_black_24dp.svg' width='15' />
+          <p class="navTwo">{{label.labelName}}</p>
+          
         </a>
         <a href="#" class="sidenavdiv" id="Label">
           <img src='/src/assets/edit.svg' width='15' />
+          <p class="navTwo">Edit Label</p>
         </a>
         <a href="#!Archive" class="sidenavdiv" id="Archive">
           <img src='/src/assets/archive.svg' width='20' />
+          <p class="navTwo">Archive</p>
         </a>
         <a href="#!Trash" class="sidenavdiv" id="Trash">
           <img src='/src/assets/delete.svg' width='20' />
+          <p class="navTwo">Trash</p>
         </a>
       </div>
       <div class="navTwo">
@@ -162,6 +165,26 @@
           </svg></div>
           <div><img src='/src/assets/archive.svg' width='20' ng-click="ToArchive(item.archive)"/></div>
           <div><img src='/src/assets/delete.svg' width='20' ng-click="ToTrash(item.trash)"/></div>
+          <div class="moreVert">
+            <img src="/src/assets/more_vert_black_24dp.svg" width="20px" , height="20px" ng-click="popper(item.noteID)" />
+            <div class="popper" ng-show="pop.includes(1)">
+                <div ng-click="ToTrash(item.noteID)">
+                    <p>Delete Note</p>
+                </div>
+                <div ng-click="addLabel(item.noteID)">
+                    <p>Add Label</p>
+                </div>
+                <p>Add Drawing</p>
+                <p>Make a copy</p>
+                <p>Show Checkboxes</p>
+                <p>Grab image text</p>
+            </div>
+            <div class="label" ng-show="labelView.includes(1)">
+                <p class="labelTitle">Label Note</p>
+                <input class="labelName" ng-model="labelName" type="text" placeholder="Enter label name" />
+                <button class="labelSave" ng-click="setLabel(labelName)">Save</button>
+            </div>
+        </div>
         </div>
       </div>
     </div>

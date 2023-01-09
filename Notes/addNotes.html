@@ -29,6 +29,26 @@
                         <img src='/src/assets/archive.svg' width='25' ng-click="ToArchive(item.isArchive)" />
                         <img src='/src/assets/delete.svg' width='25' ng-click="ToTrash(item.isTrash)">
                         <img src='/src/assets/add_alert (1).svg' width='14' height='20' />
+                        <div class="moreVert">
+                            <img src="/src/assets/more_vert_black_24dp.svg" width="20px" , height="20px"
+                                ng-click="popper(item.noteID)" />
+                            <div class="popper" ng-show="pop.includes(1)">
+                                <div ng-click="ToTrash(item.noteID)">
+                                    <p>Delete Note</p>
+                                </div>
+                                <div ng-click="addLabel(item.noteID)">
+                                    <p>Add Label</p>
+                                </div>
+                                <p>Add Drawing</p>
+                                <p>Make a copy</p>
+                                <p>Show Checkboxes</p>
+                                <p>Grab image text</p>
+                            </div>
+                            <div class="label" ng-show="labelView.includes(1)">
+                                <p class="labelTitle">Label Note</p>
+                                <input class="labelName" ng-model="labelName" type="text" placeholder="Enter label name" />
+                                <button class="labelSave" ng-click="setLabel(labelName)">Save</button>
+                            </div>
                     </div>
                 </div>
             </div>

@@ -302,8 +302,19 @@ display:flex;
   color:white;
 }
 
+.navTwo{
+  
+  font-weight: 600!important;
+  font-size:14px;
+}
+
+a{
+  text-decoration: none!important;
+}
 .navTwo:hover{
   color:black;
+  display:block;
+
 }
 
 .navTwo p:hover{
@@ -318,7 +329,11 @@ display:flex;
 border:none;
 }
 .sidenavdiv{
+  display: flex;
+  flex-direction: row;
   background-color:rgb(253, 212, 169);
+  gap:1rem;
+  color: black;
 }
 
 .takeNotUp{
@@ -415,4 +430,30 @@ flex-direction: column;
 .allIcons2 {
   display: flex;
   gap:1rem;
+}
+.moreVert {
+  position: relative;
+}
+
+.popper {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 1px solid rgb(221, 219, 219);
+  background-color: rgb(247, 246, 246);
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
+  width: 140px;
+  position: absolute;
+  bottom: -450%;
+  right: -180%;
+  visibility: hidden;
+  opacity: 1;
+} 
+
+.popper p {
+  margin: 5px;
+  font-weight: 1000;
+  font-size: small;
+  cursor: pointer;
 }
